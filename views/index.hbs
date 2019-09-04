@@ -1,0 +1,25 @@
+<div class="wrapper">
+  <div class="left">
+    <p>Location:
+    </p>
+    <span class="location">{{location}}</span>
+  </div>
+
+  <div class="center"></div>
+
+  <div class="right">
+    <ul class="label">
+      {{#each stats}}
+      <li>{{@key}}:</li>
+      {{/each}}
+    </ul>
+    <ul>
+      {{#each stats}}
+      <li>
+        {{this}}
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+
+</div>
