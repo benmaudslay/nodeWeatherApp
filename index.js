@@ -2,14 +2,17 @@
 const express = require("express")
 const hbs = require("express-handlebars")
 const path = require("path")
-// My functions
-const getWeather = require("./lib/index")
+const bodyParser = require("body-parser")
+// My imports
+const routes = require("./routes/index")
 
 // Init express
 const app = express()
 
 // Tells express which files are static, i.e. Won't change e.g. style.css
 app.use(express.static(path.join(__dirname, "public")))
+app.use(bodyParser.urlencoded({ encoded: false }))
+app.use(bodyParser.json())
 
 // Default handlebars setup
 app.engine(
@@ -23,16 +26,7 @@ app.engine(
 // Telling app we are using the handlebars engine.
 app.set("view engine", ".hbs")
 
-app.get("/", async (req, res) => {
-  let data = await getWeather()
-  let main = data.list[0].main
-  let location = data.list[0].name
-  console.log(data.list[0].main)
-  res.render("index", {
-    stats: main,
-    location
-  })
-})
+app.use("/", routes)
 
 app.listen(3000, () => {
   console.log("Listening on port 3000")
