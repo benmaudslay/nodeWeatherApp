@@ -3,6 +3,11 @@
     <form action="/" method="post" class="form">
       <label for="name">Enter a Location:</label>
       <input type="text" name="location" class="locationInput">
+      <select name="country">
+        {{#each countryCodes}}
+        <option value={{this}}>{{this}}</option>
+        {{/each}}
+      </select>
       <input type="submit" value="Send">
     </form>
   </div>
@@ -15,7 +20,7 @@
       <div class="leftTop">
         <p>Location:
         </p>
-        <span class="location">{{location}}</span>
+        <span class="location">{{location}}, {{country}}</span>
       </div>
       <div class="leftBottom">
         <img src="{{weatherImg}}" alt="Current Weather Icon">
